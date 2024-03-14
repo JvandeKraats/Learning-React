@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Square } from './Square';
 import { Board } from './Board';
 
 export default function Game(){
@@ -44,7 +43,7 @@ export default function Game(){
   return (
     <div className="game">
       <div className="game-board">
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} boardRows={3} boardColumns={3} />
       </div>
       <div className="game-info">
         <ol>{moves}</ol>
