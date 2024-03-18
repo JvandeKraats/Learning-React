@@ -1,42 +1,18 @@
-import { useState } from 'react';
 import { Square } from './Square';
 
-export function Board({xIsNext, squares, onPlay, boardRows, boardColumns}) {
+export function Board({xIsNext, squares, onPlay}) {
     const winner = calculateWinner(squares);
+    const draw = squares.every(element => Boolean(element));
     let status = setStatus();
-    let board = constructBoard();
 
     function setStatus(){
       if (winner) {
         return "Winner: " + winner;
+      } else if(draw) {
+        return "Draw"
       } else {
         return "Next player: " + (xIsNext ? "X" : "O");
       }
-    }
-
-    function constructSquare(i){
-      return <Square key={i} value={squares[i]} onSquareClick={() => handleClick(i)} />
-    }
-
-    function constructBoard(){
-      let squareIndex = 0;
-      let board = [];
-  
-      for(let i = 0; i < boardRows; i++){
-        const columnsArray = [];
-        for(let j = 0; j < boardColumns; j++){
-          columnsArray.push(constructSquare(squareIndex));
-          squareIndex++;
-        }
-  
-        board.push((
-          <div key={i} className='board-row'>
-            {columnsArray}
-          </div>
-        ))
-      }
-
-      return board;
     }
   
     function handleClick(i){
@@ -55,7 +31,21 @@ export function Board({xIsNext, squares, onPlay, boardRows, boardColumns}) {
       return (
       <>
         <div className="status">{status}</div>
-        {board}
+        <div className='board-row'>
+          <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
+          <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
+          <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
+        </div>
+        <div className='board-row'>
+          <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
+          <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
+          <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
+        </div>
+        <div className='board-row'>
+          <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
+          <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
+          <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+        </div>
       </>
       );
     }
