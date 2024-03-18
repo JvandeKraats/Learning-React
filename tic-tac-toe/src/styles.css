@@ -70,6 +70,10 @@
     text-align: center;
     width: 34px;
   }
+
+  .highlighted {
+    color:green
+  }
   
   .board-row:after {
     clear: both;
